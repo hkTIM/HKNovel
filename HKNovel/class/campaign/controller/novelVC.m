@@ -8,8 +8,10 @@
 
 #import "novelVC.h"
 #import "heardTableViewCell.h"
-#import "NovelModel.h"
 #import "introduceTCell.h"
+#import "NovelModel.h"
+
+
 @interface novelVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong ,nonatomic)NovelModel *manger;
 @property (strong ,nonatomic)UITableView *listView;
@@ -99,7 +101,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *heardTableViewCellIdf = @"heardTableViewCell";
@@ -134,30 +136,30 @@
             cell.separatorInset=UIEdgeInsetsMake(0, 0, 0, 0);
             return cell;
         }
-        else
+        else if(indexPath.row ==1)
         {
-//            introduceTCell *cell = [tableView dequeueReusableCellWithIdentifier:introduceTCellIdf];
-//            if (cell == nil) {
-//                cell=[[[NSBundle mainBundle] loadNibNamed:introduceTCellIdf owner:self options:nil] lastObject];
-//            }
-//                NSString *str=[NSString stringWithFormat:@"[最新] %@",self.manger.last_chapter_name];
-//                NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
-//                [AttributedStr addAttribute:NSForegroundColorAttributeName
-//                                      value:[UIColor redColor]
-//                                      range:NSMakeRange(0, 4)];
-//                cell.lastLab.attributedText = AttributedStr;
-//                [cell.lastBtn setBackgroundColor:[UIColor lightGrayColor]];
-//                cell.prceLab.lineBreakMode = NSLineBreakByCharWrapping;
-//                cell.prceLab.numberOfLines = 0;
-//                cell.prceLab.text=self.manger.desc;
-//                return cell;
+            introduceTCell *cell = [tableView dequeueReusableCellWithIdentifier:introduceTCellIdf];
+            if (cell == nil) {
+                cell=[[[NSBundle mainBundle] loadNibNamed:introduceTCellIdf owner:self options:nil] lastObject];
+            }
+                NSString *str=[NSString stringWithFormat:@"[最新] %@",self.manger.last_chapter_name];
+                NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
+                [AttributedStr addAttribute:NSForegroundColorAttributeName
+                                      value:[UIColor redColor]
+                                      range:NSMakeRange(0, 4)];
+                cell.lastLab.attributedText = AttributedStr;
+                [cell.lastBtn setBackgroundColor:[UIColor lightGrayColor]];
+                cell.prceLab.lineBreakMode = NSLineBreakByCharWrapping;
+                cell.prceLab.numberOfLines = 0;
+                cell.prceLab.text=self.manger.desc;
+                return cell;
         }
     }
     else
     {
         
     }
-    return Nil;
+    return 0;
    }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
